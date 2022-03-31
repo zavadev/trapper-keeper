@@ -7,9 +7,6 @@ router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
 
-router.post('/test', (req, res) => {
-  res.json({ requestBody: req.body });
-});
 
 module.exports = router;
 
@@ -20,6 +17,10 @@ module.exports = router;
 // const asyncHandler = require('express-async-handler');
 // const { setTokenCookie } = require('../../utils/auth.js');
 // const { User } = require('../../db/models');
+
+// router.post('/test', (req, res) => {
+//   res.json({ requestBody: req.body });
+// });
 
 // // router.post('/test', function(req, res) {
 // //     res.json({ requestBody: req.body });
