@@ -32,7 +32,7 @@ function ProfileButton({ user }) {
     <>
       <button onClick={openMenu}>
         <div id="profile-icon">
-            <i className="fa-duotone fa-person-half-dress" />
+            <i className="fas fa-user-circle" />
         </div>
       </button>
       {showMenu && (
