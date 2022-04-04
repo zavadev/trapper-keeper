@@ -10,3 +10,19 @@
     font-family: 'TrapperKeeper', 'Courier New', Courier, monospace;
     color: hotpink;
 }
+.nav-container {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-width: 100%;
+}
+.nav-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: fit-content;
+    height: 125px;
+    padding: 5px;
+    border: 5px solid teal;
+}
