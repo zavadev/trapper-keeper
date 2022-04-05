@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+import Notebooks from "../Notebooks";
 
 function HomePage() {
   const sessionUser = useSelector(state => state.session.user);
@@ -10,7 +11,7 @@ function HomePage() {
 
   return (
       <>
-        <h1 className="site-name">HomePage. {sessionUser.username}</h1>
+        <Notebooks />
       </>
     )
 }
