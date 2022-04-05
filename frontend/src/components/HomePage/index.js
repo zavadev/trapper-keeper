@@ -1,11 +1,16 @@
 import { useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 function HomePage() {
-  const user = useSelector(state => state.session.user);
+  const sessionUser = useSelector(state => state.session.user);
+
+  if (!sessionUser) {
+    return <Redirect to="/" />
+  }
 
   return (
       <>
-        <h1 className="site-name">BinderKeeper. Hello, ${user.name}</h1>
+        <h1 className="site-name">HomePage. {sessionUser.username}</h1>
       </>
     )
 }
