@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getNotebooksThunk } from '../../store/notebooks';
 import { useEffect } from 'react';
+import './Notebooks.css';
 
 function Notebook() {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ function Notebook() {
             <div>
               <h2 className="my-notebooks">My Notebooks</h2>
             </div>
-            <div>
+            <div id="notebook-list">
               <h3>{notebooks.notebooks[0].title}</h3>
             </div>
           </div>
