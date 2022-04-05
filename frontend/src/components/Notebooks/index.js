@@ -21,7 +21,7 @@ function Notebook() {
               <h2 className="my-notebooks">My Notebooks</h2>
             </div>
             <div>
-              <h3>{notebooks?.notebooks[0].title}</h3>
+              <h3>{notebooks.notebooks[0].title}</h3>
             </div>
           </div>
       </>
