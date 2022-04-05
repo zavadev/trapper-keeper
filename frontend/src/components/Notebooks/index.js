@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 
 function Notebook() {
   const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state?.session.user);
-  const notebooks = useSelector(state => state?.notebooks)
+  const sessionUser = useSelector(state => state.session.user);
+  const notebooks = useSelector(state => state.notebooks)
   console.log('======>>>>>>>>=======', sessionUser);
   console.log('!!!!!!!>>>>>>>>!!!!!!!', notebooks);
 
