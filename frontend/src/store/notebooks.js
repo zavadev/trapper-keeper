@@ -33,9 +33,11 @@ export const postNotebookThunk = (notebook) => async (dispatch) => {
 
   if (response.ok) {
     const payload = await response.json();
+    console.log(payload);
     dispatch(postNotebook(payload));
     return;
   }
+  return response;
 };
 
 //DELETE A NOTEBOOK
@@ -60,13 +62,16 @@ export const deleteNotebookThunk = (notebookId) => async (dispatch) => {
 const initialState = {};
 
 const notebooksReducer = (state = initialState, action) => {
+  let newState;
   switch (action.type) {
     case GET_NOTEBOOKS:
-      return { ...state, notebooks: action.payload };
+      newState = { ...state }
+      action.payload.forEach(notebook => newState[notebook.id] = notebook)
+      return newState;
     case POST_NOTEBOOK:
-      return { ...state, notebooks: action.payload };
+      return { ...state, [action.payload.id]: action.payload };
     case DELETE_NOTEBOOK:
-      let newState = {};
+      newState = {};
       newState = { ...state };
       delete newState[action.payload];
       return newState;

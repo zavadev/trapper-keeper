@@ -41,17 +41,23 @@ router.post("/", validateNotebook, requireAuth, asyncHandler(async (req, res) =>
 );
 
 //DELETE a Notebook:
+const notebookNotFoundError = (id) => {
+  const err = Error('Notebook not found');
+  err.errors = [`Notebook with id of ${id} could not be found.`];
+  err.title = 'Notebook not found.';
+  err.status = 404;
+  return err;
+};
+
 router.delete("/:notebookId", requireAuth, asyncHandler(async (req, res) => {
     const notebookId = req.params.notebookId;
     const notebook = await db.Notebook.findByPk(notebookId);
-    const userId = notebook.userId;
-    await notebook.destroy();
-
-    const notebooks = await db.Notebook.findAll({
-      where: { userId: userId },
-    });
-    return res.json(notebooks);
-  })
-);
+    if (notebook) {
+      await notebook.destroy();
+      res.status(204).end();
+    } else {
+      next(notebookNotFoundError(notebookId));
+    }
+}));
 
 module.exports = router;

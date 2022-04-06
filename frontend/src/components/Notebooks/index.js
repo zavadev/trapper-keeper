@@ -8,12 +8,13 @@ import './Notebooks.css';
 function Notebook() {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
-  const notebooks = useSelector(state => state?.notebooks?.notebooks);
+  const notebooks = useSelector(state => state.notebooks);
   const [currentNb, setCurrentNb] = useState("");
+  const notebooksArr = Object.values(notebooks).reverse();
 
   useEffect(() => {
     dispatch(getNotebooksThunk());
-  }, [dispatch, sessionUser, notebooks.length]);
+  }, [dispatch]);
 
   return (
       <>
@@ -23,8 +24,7 @@ function Notebook() {
               <h2 className="my-notebooks">My Notebooks</h2>
             </div>
             <div id="notebook-list">
-              {notebooks.length > 0 &&
-                notebooks?.map((notebook) => (
+              {notebooksArr?.map((notebook) => (
                   <div
                     id={notebook.id}
                     key={notebook.id}
