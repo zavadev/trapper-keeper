@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-// import { useHistory } from ''
 import { useDispatch, useSelector } from "react-redux";
 import { Modal } from '../../../context/Modal';
-import {postNotebookThunk} from "../../../store/notebooks.js"
+import { postNotebookThunk, deleteNotebookThunk, getNotebooksThunk } from "../../../store/notebooks.js"
 import CreateNBForm from './CreateNBForm';
-import './CreateNBForm.css';
+import './NBActions.css';
 
-function CreateNBFormModal() {
+function NBActions({ currentNb, setCurrentNb }) {
   const [showModal, setShowModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const dispatch = useDispatch();
   const userId = useSelector(state => state.session.user.id);
   const [title, setTitle] = useState("");
@@ -26,6 +26,13 @@ function CreateNBFormModal() {
     setTitle("");
   }
 
+  const deleteSubmit = (e) => {
+    dispatch(deleteNotebookThunk(currentNb.id))
+      .then(() => dispatch(getNotebooksThunk(currentNb.userId)))
+    setShowDeleteModal(false);
+    setCurrentNb("");
+  }
+
   return (
     <>
       <button onClick={() => setShowModal(true)}>New Notebook</button>
@@ -39,8 +46,15 @@ function CreateNBFormModal() {
           />
         </Modal>
       )}
+      <button onClick={() => setShowDeleteModal(true)}>Delete</button>
+      {showDeleteModal && (
+        <Modal onClose={() => setShowDeleteModal(false)}>
+          <h3>Are you sure you want to delete {currentNb.title}?</h3>
+          <button onClick={() => deleteSubmit()}>Delete!</button>
+        </Modal>
+      )}
     </>
   );
 }
 
-export default CreateNBFormModal;
+export default NBActions;

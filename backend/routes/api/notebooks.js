@@ -41,13 +41,13 @@ router.post("/", validateNotebook, requireAuth, asyncHandler(async (req, res) =>
 );
 
 //DELETE a Notebook:
-router.delete("/notebook/:notebookId", asyncHandler(async (req, res) => {
+router.delete("/:notebookId", requireAuth, asyncHandler(async (req, res) => {
     const notebookId = req.params.notebookId;
-    const notebook = await Notebook.findByPk(notebookId);
+    const notebook = await db.Notebook.findByPk(notebookId);
     const userId = notebook.userId;
     await notebook.destroy();
 
-    const notebooks = await Notebook.findAll({
+    const notebooks = await db.Notebook.findAll({
       where: { userId: userId },
     });
     return res.json(notebooks);

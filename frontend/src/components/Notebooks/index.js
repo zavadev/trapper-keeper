@@ -2,14 +2,13 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from 'react';
 import { getNotebooksThunk } from '../../store/notebooks';
 import { useEffect } from 'react';
-import { NavLink } from "react-router-dom";
-import CreateNotebook from './CreateNotebook';
+import NBActions from './NBActions';
 import './Notebooks.css';
 
 function Notebook() {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
-  const notebooks = useSelector(state => state.notebooks.notebooks);
+  const notebooks = useSelector(state => state?.notebooks?.notebooks);
   const [currentNb, setCurrentNb] = useState("");
 
   useEffect(() => {
@@ -26,18 +25,20 @@ function Notebook() {
             <div id="notebook-list">
               {notebooks.length > 0 &&
                 notebooks?.map((notebook) => (
-                  <NavLink
+                  <div
                     id={notebook.id}
                     key={notebook.id}
-                    to={`/notebooks/${notebook.id}`}
+                    className={currentNb.id === notebook.id ? 'current-notebook' : null}
+                    onClick={() => {
+                      setCurrentNb(notebook)
+                    }}
                   >
                     <h3>{notebook.title}</h3>
-                  </NavLink>
+                  </div>
                 ))}
             </div>
             <div id="nb-buttons-div">
-              <CreateNotebook />
-              <button>Delete This!</button>
+              <NBActions currentNb={currentNb} setCurrentNb={setCurrentNb}/>
             </div>
           </div>
       </>

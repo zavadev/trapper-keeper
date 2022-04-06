@@ -16,7 +16,7 @@ export const getNotebooksThunk = () => async (dispatch) => {
   }
 };
 
-//POST -- NEW NOTEBOOK
+//POST NEW NOTEBOOK
 const POST_NOTEBOOK = "notebooks/postNotebook";
 
 const postNotebook = (payload) => ({
@@ -38,6 +38,24 @@ export const postNotebookThunk = (notebook) => async (dispatch) => {
   }
 };
 
+//DELETE A NOTEBOOK
+const DELETE_NOTEBOOK = "notebooks/deleteNotebookThunk"
+
+const deleteNotebook = (notebookId) => ({
+  type: DELETE_NOTEBOOK,
+  payload: notebookId
+});
+
+export const deleteNotebookThunk = (notebookId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/notebooks/${notebookId}`, {
+    method: 'DELETE'
+  });
+
+  if (response.ok) {
+    dispatch(deleteNotebook(notebookId));
+  }
+}
+
 
 const initialState = {};
 
@@ -47,6 +65,11 @@ const notebooksReducer = (state = initialState, action) => {
       return { ...state, notebooks: action.payload };
     case POST_NOTEBOOK:
       return { ...state, notebooks: action.payload };
+    case DELETE_NOTEBOOK:
+      let newState = {};
+      newState = { ...state };
+      delete newState[action.payload];
+      return newState;
     default:
       return state;
   }
