@@ -2,6 +2,8 @@ const express = require("express");
 const asyncHandler = require("express-async-handler");
 const db = require("../../db/models");
 const {requireAuth} = require('../../utils/auth.js')
+const { check } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
 
@@ -17,9 +19,18 @@ router.get("/", requireAuth, asyncHandler(async (req, res) => {
 );
 
 //CREATE new Notebook:
-router.post("/", requireAuth, asyncHandler(async (req, res) => {
+
+const validateNotebook = [
+  check('title')
+    .exists({ checkFalsy: true })
+    .isLength({ max: 50 })
+    .withMessage('Notebook title must be less than 50 characters!'),
+  handleValidationErrors
+];
+
+router.post("/", validateNotebook, requireAuth, asyncHandler(async (req, res) => {
     const { title, userId } = req.body;
-    const newNotebook = await Notebook.create({
+    const newNotebook = await db.Notebook.create({
       title: title,
       userId: userId,
       createdAt: new Date(),

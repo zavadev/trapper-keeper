@@ -14,9 +14,9 @@ function HomePage() {
     .then(() => setIsLoaded(true))
   }, [dispatch, sessionUser]);
 
-  // if (!sessionUser) {
-  //   return <Redirect to="/" />
-  // }
+  if (!sessionUser) {
+    return <Redirect to="/" />
+  }
 
   return (
       <>

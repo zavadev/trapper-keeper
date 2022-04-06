@@ -1,4 +1,4 @@
-// import { csrfFetch } from "./csrf";
+import { csrfFetch } from "./csrf";
 
 //GET USER'S NOTEBOOKS
 const GET_NOTEBOOKS = "notebooks/getNotebooks";
@@ -10,25 +10,43 @@ const getNotebooks = (notebooks) => ({
 
 export const getNotebooksThunk = () => async (dispatch) => {
   const response = await fetch('/api/notebooks');
-  console.log('2222222>>>>>>>>!!!!!!!', response);
-
   if (response.ok) {
     const allNotebooks = await response.json();
-    // const notebooks = allNotebooks.notebooks;
     dispatch(getNotebooks(allNotebooks));
   }
 };
 
+//POST -- NEW NOTEBOOK
+const POST_NOTEBOOK = "notebooks/postNotebook";
+
+const postNotebook = (payload) => ({
+  type: POST_NOTEBOOK,
+  payload
+})
+
+export const postNotebookThunk = (notebook) => async (dispatch) => {
+  const response = await csrfFetch(`/api/notebooks`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(notebook),
+  });
+
+  if (response.ok) {
+    const payload = await response.json();
+    dispatch(postNotebook(payload));
+    return;
+  }
+};
+
+
 const initialState = {};
 
 const notebooksReducer = (state = initialState, action) => {
-  // let newState;
   switch (action.type) {
     case GET_NOTEBOOKS:
       return { ...state, notebooks: action.payload };
-      // newState = {};
-      // action.payload.forEach((notebook) => (newState[notebook.id] = notebook))
-      // return newState;
+    case POST_NOTEBOOK:
+      return { ...state, notebooks: action.payload };
     default:
       return state;
   }
