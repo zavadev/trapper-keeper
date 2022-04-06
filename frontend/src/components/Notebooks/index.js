@@ -17,7 +17,7 @@ function Notebook() {
 
   return (
       <>
-        <h1 className="site-name">HomePage. {sessionUser?.username}</h1>
+        <h1 className="site-name">HomePage. Hello, {sessionUser?.username}!</h1>
           <div id="my-notebooks-div">
             <div>
               <h2 className="my-notebooks">My Notebooks</h2>
