@@ -28,7 +28,8 @@ function Notebook() {
   }, [notebooks])
 
   useEffect(() => {
-    if (currentNb && currentNb.Notes.length > 0) {
+    console.log("=====>>>>>", currentNote);
+    if (currentNb && currentNb.Notes && currentNb.Notes.length > 0) {
       setCurrentNote(currentNb.Notes[0]);
     }
   }, [currentNb])
@@ -56,7 +57,7 @@ function Notebook() {
             ))}
           </div>
           <div id="nb-buttons-div">
-            <NBActions currentNb={currentNb} setCurrentNb={setCurrentNbId}/>
+            <NBActions currentNb={currentNb} setCurrentNbId={setCurrentNbId}/>
           </div>
         </div>
         <div id="my-notes-div">
