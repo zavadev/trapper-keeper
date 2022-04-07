@@ -18,6 +18,20 @@
   align-items: center;
 }
 
+#main-note-container {
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#note-form-container {
+  border: 3px solid navy;
+  width: 600px;
+  height: 300px;
+  font-size: 20px;
+}
+
 #notebook-list {
   border: 3px solid purple;
   width: 200px;

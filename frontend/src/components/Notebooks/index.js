@@ -4,12 +4,14 @@ import { getNotebooksThunk } from '../../store/notebooks';
 import NBActions from './NBActions';
 import Notes from './Notes';
 import './Notebooks.css';
+import NoteForm from './Notes/NoteForm.js';
 
 function Notebook() {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const notebooks = useSelector(state => state.notebooks);
   const [currentNb, setCurrentNb] = useState("");
+  const [currentNote, setCurrentNote] = useState("");
   const notebooksArr = Object.values(notebooks).reverse();
 
   useEffect(() => {
@@ -48,6 +50,14 @@ function Notebook() {
           </div>
           <div id="note-list">
             <Notes currentNb={currentNb}/>
+          </div>
+        </div>
+        <div id="main-note-container">
+          <div>
+            <h2>Note-Name</h2>
+          </div>
+          <div id="note-form-container">
+            <NoteForm currentNote={currentNote} />
           </div>
         </div>
       </div>

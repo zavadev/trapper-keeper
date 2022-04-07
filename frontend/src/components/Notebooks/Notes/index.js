@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 function Notes({ currentNb }) {
   const dispatch = useDispatch();
   const notes = useSelector(state => state.notebooks);
-  const [currentNote, setCurrentNote] = useState("");
   const notesArray = Object.values(notes).reverse();
 
   return (
