@@ -41,7 +41,7 @@ export const postNotebookThunk = (notebook) => async (dispatch) => {
 };
 
 //DELETE A NOTEBOOK
-const DELETE_NOTEBOOK = "notebooks/deleteNotebookThunk"
+const DELETE_NOTEBOOK = "notebooks/deleteNotebookThunk";
 
 const deleteNotebook = (notebookId) => ({
   type: DELETE_NOTEBOOK,
@@ -78,6 +78,6 @@ const notebooksReducer = (state = initialState, action) => {
     default:
       return state;
   }
-}
+};
 
 export default notebooksReducer;

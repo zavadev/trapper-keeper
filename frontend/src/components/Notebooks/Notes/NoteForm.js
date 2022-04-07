@@ -1,6 +1,20 @@
 function NoteForm ({ currentNote }) {
   return (
-    <div>Title and Note Forms Here...</div>
+    <form id="form-note-content">
+      <input
+        id="main-note-form"
+        type="text"
+        placeholder="Note Title"
+        value={currentNote.title}
+        required
+      />
+      <textarea
+        id="form-note-content"
+        placeholder="Jot it down!"
+        value={currentNote.content}
+        required
+      />
+    </form>
   );
 }
 

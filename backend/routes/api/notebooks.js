@@ -4,10 +4,9 @@ const db = require("../../db/models");
 const {requireAuth} = require('../../utils/auth.js')
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-
 const router = express.Router();
 
-//GET ALL of a User's Notebooks (READ)
+//GET ALL of User's Notebooks (READ):
 router.get("/", requireAuth, asyncHandler(async (req, res) => {
     const userId = req.user.id;
     const notebooks = await db.Notebook.findAll({
@@ -18,7 +17,7 @@ router.get("/", requireAuth, asyncHandler(async (req, res) => {
   })
 );
 
-//CREATE new Notebook:
+//CREATE New Notebook:
 
 const validateNotebook = [
   check('title')
