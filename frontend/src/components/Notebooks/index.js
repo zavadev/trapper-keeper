@@ -14,8 +14,8 @@ function Notebook() {
   const notebooksArr = Object.values(notebooks).reverse();
   const notes = useSelector(state => state.notes);
   const notesArr = Object.values(notes).reverse();
-  const [currentNb, setCurrentNb] = useState("");
-  const [currentNote, setCurrentNote] = useState("");
+  const [currentNb, setCurrentNb] = useState({});
+  const [currentNote, setCurrentNote] = useState({});
   const filteredNotes = notesArr.filter(note => note.notebookId === currentNb.id)
 
   console.log(filteredNotes);
@@ -24,6 +24,11 @@ function Notebook() {
     dispatch(getNotebooksThunk());
     dispatch(getNotesThunk());
   }, [dispatch]);
+
+  useEffect(() => {
+    setCurrentNb(notebooksArr[0]);
+    setCurrentNote(notesArr[0]);
+  }, [notebooksArr])
 
   return (
     <>
@@ -72,10 +77,10 @@ function Notebook() {
         </div>
         <div id="main-note-container">
           <div>
-            <h2>{ currentNote.title ? currentNote.title : 'Choose a Note'}</h2>
+            <h2>{ currentNote?.title ? currentNote.title : 'Choose a Note'}</h2>
           </div>
           <div id="note-form-container">
-            <NoteForm currentNote={currentNote} />
+            <NoteForm currentNote={currentNote} setCurrentNote={setCurrentNote} />
           </div>
         </div>
       </div>
