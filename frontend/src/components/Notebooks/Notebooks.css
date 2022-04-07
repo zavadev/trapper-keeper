@@ -1,8 +1,50 @@
+#home-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#my-notebooks-div {
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#my-notes-div {
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #notebook-list {
   border: 3px solid purple;
-  width: fit-content;
+  width: 200px;
+  height: 300px;
+  font-size: 20px;
+}
+#notebook-list:hover {
+  cursor: pointer;
+}
+
+#note-list {
+  border: 3px solid yellow;
+  width: 200px;
+  height: 300px;
+  font-size: 20px;
 }
 
 .current-notebook {
-  background-color: lawngreen;
+  background-color: blueviolet;
+  margin: 1px;
+  padding: 5px;
+}
+
+.not-current-notebook {
+  margin: 1px;
+  padding: 5px;
+}
+.not-current-notebook:hover {
+  background-color: plum;
 }

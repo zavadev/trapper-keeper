@@ -11,7 +11,7 @@ function HomePage() {
 
   return (
       <>
-          <Notebooks />
+        <Notebooks />
       </>
     )
 }
