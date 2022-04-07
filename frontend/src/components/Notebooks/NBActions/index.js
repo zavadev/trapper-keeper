@@ -5,7 +5,7 @@ import { postNotebookThunk, deleteNotebookThunk, getNotebooksThunk } from "../..
 import CreateNBForm from './CreateNBForm';
 import './NBActions.css';
 
-function NBActions({ currentNb, setCurrentNb }) {
+function NBActions({ currentNb, setCurrentNbId }) {
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ function NBActions({ currentNb, setCurrentNb }) {
     dispatch(deleteNotebookThunk(currentNb.id))
       .then(() => dispatch(getNotebooksThunk(currentNb.userId)))
     setShowDeleteModal(false);
-    setCurrentNb("");
+    setCurrentNbId(0);
   }
 
   return (

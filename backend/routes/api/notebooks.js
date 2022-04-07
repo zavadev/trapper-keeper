@@ -11,6 +11,7 @@ router.get("/", requireAuth, asyncHandler(async (req, res) => {
     const userId = req.user.id;
     const notebooks = await db.Notebook.findAll({
       where: { userId: userId },
+      include: { model: db.Note },
       order: [["updatedAt", "DESC"]],
     });
     return res.json(notebooks);
@@ -35,6 +36,9 @@ router.post("/", validateNotebook, requireAuth, asyncHandler(async (req, res) =>
       createdAt: new Date(),
       updatedAt: new Date(),
     });
+
+    newNotebook.Notes = [];
+
     return res.json(newNotebook);
   })
 );

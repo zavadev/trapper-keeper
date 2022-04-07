@@ -12,13 +12,9 @@ function Notebook() {
   const sessionUser = useSelector(state => state.session.user);
   const notebooks = useSelector(state => state.notebooks);
   const notebooksArr = Object.values(notebooks).reverse();
-  const notes = useSelector(state => state.notes);
-  const notesArr = Object.values(notes).reverse();
-  const [currentNb, setCurrentNb] = useState({});
+  const [currentNbId, setCurrentNbId] = useState(0);
+  const currentNb = useSelector(state => state.notebooks[currentNbId])
   const [currentNote, setCurrentNote] = useState({});
-  const filteredNotes = notesArr.filter(note => note.notebookId === currentNb.id)
-
-  console.log(filteredNotes);
 
   useEffect(() => {
     dispatch(getNotebooksThunk());
@@ -26,9 +22,16 @@ function Notebook() {
   }, [dispatch]);
 
   useEffect(() => {
-    setCurrentNb(notebooksArr[0]);
-    setCurrentNote(notesArr[0]);
-  }, [notebooksArr])
+    if (notebooksArr.length > 0) {
+      setCurrentNbId(notebooksArr[0].id);
+    }
+  }, [notebooks])
+
+  useEffect(() => {
+    if (currentNb && currentNb.Notes.length > 0) {
+      setCurrentNote(currentNb.Notes[0]);
+    }
+  }, [currentNb])
 
   return (
     <>
@@ -43,9 +46,9 @@ function Notebook() {
               <div
                 id={notebook.id}
                 key={notebook.id}
-                className={currentNb.id === notebook.id ? 'current-notebook' : 'not-current-notebook'}
+                className={currentNb?.id === notebook.id ? 'current-notebook' : 'not-current-notebook'}
                 onClick={() => {
-                  setCurrentNb(notebook)
+                  setCurrentNbId(notebook.id)
                 }}
               >
                 {notebook.title}
@@ -53,7 +56,7 @@ function Notebook() {
             ))}
           </div>
           <div id="nb-buttons-div">
-            <NBActions currentNb={currentNb} setCurrentNb={setCurrentNb}/>
+            <NBActions currentNb={currentNb} setCurrentNb={setCurrentNbId}/>
           </div>
         </div>
         <div id="my-notes-div">
@@ -61,11 +64,11 @@ function Notebook() {
             <h2>Notes</h2>
           </div>
           <div id="note-list">
-            {filteredNotes?.map((note) => (
+            {currentNb?.Notes?.map((note) => (
               <div
                 id={note.id}
                 key={note.id}
-                className={currentNote.id === note.id ? 'current-note' : 'not-current-note'}
+                className={currentNote?.id === note.id ? 'current-note' : 'not-current-note'}
                 onClick={() => {
                   setCurrentNote(note)
                 }}

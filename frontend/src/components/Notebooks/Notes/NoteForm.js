@@ -1,8 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function NoteForm ({ currentNote, setCurrentNote }) {
-  const [noteTitle, setNoteTitle] = useState('');
-  const [noteContent, setNoteContent] =useState('');
+  const [noteTitle, setNoteTitle] = useState('Note Title');
+  const [noteContent, setNoteContent] =useState('Jot it down!');
+
+  console.log("=====>>>>>", currentNote);
+  useEffect( () => {
+    if (currentNote.title && currentNote.content) {
+      setNoteTitle(currentNote.title);
+      setNoteContent(currentNote.content);
+    }
+  }, [currentNote])
 
   return (
     <form id="form-note-content">
@@ -10,18 +18,16 @@ function NoteForm ({ currentNote, setCurrentNote }) {
         <input
           id="main-note-form"
           type="text"
-          placeholder="Note Title"
           onChange={e => setNoteTitle(e.target.value)}
-          value={noteTitle ? noteTitle : currentNote.title}
+          value={noteTitle}
           required
         />
       </div>
       <div id="form-content-div">
         <textarea
           id="form-note-content"
-          placeholder="Jot it down!"
           onChange={e => setNoteContent(e.target.value)}
-          value={noteContent ? noteContent : currentNote.content}
+          value={noteContent}
           required
         />
       </div>
