@@ -17,4 +17,19 @@ router.get("/", requireAuth, asyncHandler(async (req, res) => {
   })
 );
 
+// POST NEW NOTE (CREATE):
+router.post("/", requireAuth, asyncHandler(async (req, res) => {
+  const { title, content, userId, notebookId } = req.body;
+  const newNote = await db.Note.create({
+    title: title,
+    content: content,
+    notebookId: notebookId,
+    userId: userId,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  });
+  return res.json(newNote);
+})
+);
+
 module.exports = router;

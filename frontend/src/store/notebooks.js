@@ -16,7 +16,7 @@ export const getNotebooksThunk = () => async (dispatch) => {
   }
 };
 
-//POST NEW NOTEBOOK
+//POST NEW NOTEBOOK:
 const POST_NOTEBOOK = "notebooks/postNotebook";
 
 const postNotebook = (payload) => ({
@@ -33,7 +33,6 @@ export const postNotebookThunk = (notebook) => async (dispatch) => {
 
   if (response.ok) {
     const payload = await response.json();
-    console.log(payload);
     dispatch(postNotebook(payload));
     return;
   }

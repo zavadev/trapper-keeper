@@ -18,8 +18,7 @@ router.get("/", requireAuth, asyncHandler(async (req, res) => {
   })
 );
 
-//CREATE New Notebook:
-
+//POST New Notebook (CREATE):
 const validateNotebook = [
   check('title')
     .exists({ checkFalsy: true })

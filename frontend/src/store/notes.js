@@ -16,6 +16,29 @@ export const getNotesThunk = () => async (dispatch) => {
   }
 };
 
+//POST NEW NOTE:
+const POST_NOTE = "notes/postNote";
+
+const postNote = (payload) => ({
+  type: POST_NOTE,
+  payload
+})
+
+export const postNoteThunk = (note) => async (dispatch) => {
+  const response = await csrfFetch('/api/notes', {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(note)
+  })
+
+  if (response.ok) {
+    const payload = await response.json();
+    dispatch(postNote(payload));
+    return;
+  }
+  return response;
+}
+
 
 const initialState = {};
 
@@ -26,8 +49,8 @@ const notesReducer = (state = initialState, action) => {
       newState = { ...state }
       action.payload.forEach(note => newState[note.id] = note)
       return newState;
-    // case POST_NOTE:
-    //   return { ...state, [action.payload.id]: action.payload };
+    case POST_NOTE:
+      return { ...state, [action.payload.id]: action.payload };
     // case DELETE_NOTE:
     //   newState = {};
     //   newState = { ...state };

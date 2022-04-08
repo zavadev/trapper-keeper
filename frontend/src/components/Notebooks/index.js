@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState, useEffect } from 'react';
 import { getNotebooksThunk } from '../../store/notebooks';
-import { getNotesThunk } from '../../store/notes';
+import { getNotesThunk, postNoteThunk } from '../../store/notes';
 import NBActions from './NBActions';
 // import Notes from './Notes';
 import './Notebooks.css';
@@ -28,11 +28,20 @@ function Notebook() {
   }, [notebooks])
 
   useEffect(() => {
-    console.log("=====>>>>>", currentNote);
     if (currentNb && currentNb.Notes && currentNb.Notes.length > 0) {
       setCurrentNote(currentNb.Notes[0]);
     }
   }, [currentNb])
+
+  const newNote = (e) => {
+    const payload = {
+      title: "New Note",
+      content: "Write your note here...",
+      notebookId: currentNbId,
+      userId: sessionUser.id
+    }
+    dispatch(postNoteThunk(payload));
+  }
 
   return (
     <>
@@ -77,10 +86,17 @@ function Notebook() {
               </div>
             ))}
           </div>
+          <div>
+            <button onClick={() => newNote()}>New Note</button>
+          </div>
         </div>
         <div id="main-note-container">
-          <div>
-            <h2>{ currentNote?.title ? currentNote.title : 'Choose a Note'}</h2>
+          <div id="note-title-div">
+            <h3>{ currentNote?.title ? currentNote.title : 'Choose a Note'}</h3>
+          </div>
+          <div id="note-buttons-div">
+            <button>Save</button>
+            <button>Delete</button>
           </div>
           <div id="note-form-container">
             <NoteForm currentNote={currentNote} setCurrentNote={setCurrentNote} />

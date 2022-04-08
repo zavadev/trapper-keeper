@@ -25,6 +25,11 @@
   align-items: center;
 }
 
+#note-title-div {
+  margin: none;
+  padding: none;
+}
+
 #note-form-container {
   border: 3px solid navy;
   width: 600px;
@@ -48,17 +53,32 @@
   height: 300px;
   font-size: 20px;
 }
+#note-list:hover {
+  cursor: pointer;
+}
 
 .current-notebook {
   background-color: blueviolet;
   margin: 1px;
   padding: 5px;
 }
-
 .not-current-notebook {
   margin: 1px;
   padding: 5px;
 }
 .not-current-notebook:hover {
   background-color: plum;
+}
+
+.current-note {
+  background-color: springgreen;
+  margin: 1px;
+  padding: 5px;
+}
+.not-current-note {
+  margin: 1px;
+  padding: 5px;
+}
+.not-current-note:hover {
+  background-color: lightgoldenrodyellow;
 }
