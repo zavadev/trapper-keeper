@@ -1,6 +1,5 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
-const { noExtendRight } = require("sequelize/types/lib/operators");
 const db = require("../../db/models");
 const {requireAuth} = require('../../utils/auth.js')
 const { check } = require('express-validator');
