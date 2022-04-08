@@ -11,9 +11,12 @@ function HomePage() {
   }
 
   return (
+    <>
+      <h1 className="site-name">HomePage. Hello, {sessionUser?.username}!</h1>
       <div id='home-container'>
         <Notebooks />
       </div>
+    </>
     )
 }
 

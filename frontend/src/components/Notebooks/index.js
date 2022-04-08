@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { getNotebooksThunk } from '../../store/notebooks';
 import { getNotesThunk } from '../../store/notes';
 import NBActions from './NBActions';
-import Notes from './Notes';
+// import Notes from './Notes';
 import './Notebooks.css';
 import NoteForm from './Notes/NoteForm.js';
 
@@ -36,7 +36,6 @@ function Notebook() {
 
   return (
     <>
-      <h1 className="site-name">HomePage. Hello, {sessionUser?.username}!</h1>
       <div id="home-container">
         <div id="my-notebooks-div">
           <div>
