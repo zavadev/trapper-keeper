@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState, useEffect } from 'react';
 import { getNotebooksThunk } from '../../store/notebooks';
-import { getNotesThunk, postNoteThunk } from '../../store/notes';
+import { getNotesThunk, postNoteThunk, deleteNoteThunk } from '../../store/notes';
 import NBActions from './NBActions';
 // import Notes from './Notes';
 import './Notebooks.css';
@@ -41,6 +41,12 @@ function Notebook() {
       userId: sessionUser.id
     }
     dispatch(postNoteThunk(payload));
+  }
+
+  const deleteNote = () => {
+    dispatch(deleteNoteThunk(currentNote.id))
+      .then(() => dispatch(getNotebooksThunk(currentNb.userId)))
+    setCurrentNote(currentNb.Notes[0]);
   }
 
   return (
@@ -96,7 +102,7 @@ function Notebook() {
           </div>
           <div id="note-buttons-div">
             <button>Save</button>
-            <button>Delete</button>
+            <button onClick={() => deleteNote()}>Delete</button>
           </div>
           <div id="note-form-container">
             <NoteForm currentNote={currentNote} setCurrentNote={setCurrentNote} />

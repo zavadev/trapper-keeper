@@ -1,9 +1,10 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
+const { noExtendRight } = require("sequelize/types/lib/operators");
 const db = require("../../db/models");
 const {requireAuth} = require('../../utils/auth.js')
-// const { check } = require('express-validator');
-// const { handleValidationErrors } = require('../../utils/validation');
+const { check } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 
 //GET ALL of User's Notes (READ):
@@ -29,7 +30,26 @@ router.post("/", requireAuth, asyncHandler(async (req, res) => {
     updatedAt: new Date(),
   });
   return res.json(newNote);
-})
-);
+}));
+
+//DELETE A NOTE:
+const noteNotFoundError = (id) => {
+  const err = Error('Note not found');
+  err.errors = [`Note with id of ${id} could not be found.`];
+  err.title = 'Note not found.';
+  err.status = 404;
+  return err;
+}
+
+router.delete("/:noteId", requireAuth, asyncHandler(async (req, res) => {
+  const noteId = req.params.noteId;
+  const note = await db.Note.findByPk(noteId);
+  if (note) {
+    await note.destroy();
+    res.status(204).end();
+  } else {
+    next(noteNotFoundError(noteId));
+  }
+}))
 
 module.exports = router;

@@ -39,6 +39,24 @@ export const postNoteThunk = (note) => async (dispatch) => {
   return response;
 }
 
+// DELETE A NOTE:
+const DELETE_NOTE = "notes/deleteNote";
+
+const deleteNote = (noteId) => ({
+  type: DELETE_NOTE,
+  payload: noteId
+})
+
+export const deleteNoteThunk = (noteId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/notes/${noteId}`, {
+    method: 'DELETE'
+  })
+
+  if (response.ok) {
+    dispatch(deleteNote(noteId));
+  }
+}
+
 
 const initialState = {};
 
@@ -51,11 +69,11 @@ const notesReducer = (state = initialState, action) => {
       return newState;
     case POST_NOTE:
       return { ...state, [action.payload.id]: action.payload };
-    // case DELETE_NOTE:
-    //   newState = {};
-    //   newState = { ...state };
-    //   delete newState[action.payload];
-    //   return newState;
+    case DELETE_NOTE:
+      newState = {};
+      newState = { ...state };
+      delete newState[action.payload];
+      return newState;
     default:
       return state;
   }
