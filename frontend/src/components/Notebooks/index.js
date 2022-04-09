@@ -23,11 +23,11 @@ function Notebook() {
     dispatch(getNotesThunk());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (notebooksArr.length > 0) {
-      setCurrentNbId(notebooksArr[0]?.id);
-    }
-  }, [notebooks])
+  // useEffect(() => {
+  //   if (notebooksArr.length > 0) {
+  //     setCurrentNbId(notebooksArr[0]?.id);
+  //   }
+  // }, [notebooks])
 
   useEffect(() => {
     if (currentNb && currentNb.Notes && currentNb.Notes.length > 0) {
