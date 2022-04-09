@@ -51,4 +51,29 @@ router.delete("/:noteId", requireAuth, asyncHandler(async (req, res) => {
   }
 }))
 
+//EDIT A NOTE (UPDATE):
+const validateNoteUpdate = [
+  check('title')
+    .exists({ checkFalsy: true })
+    .isLength({ max: 20 })
+    .withMessage('Note title must be less than 20 characters.')
+    .isLength({ min: 1 })
+    .withMessage('Note title must be at least 1 character.'),
+  check('content')
+    .exists({ checkFalsy: true })
+    .withMessage('Note must contain content.'),
+  handleValidationErrors
+];
+
+router.put("/:noteId", validateNoteUpdate, requireAuth, asyncHandler(async (req, res) => {
+  const { title, content, noteId } = req.body;
+  const note = await db.Note.findByPk(noteId);
+
+  const newNote = await note.update({
+    title: title,
+    content: content
+  })
+  return res.json(newNote)
+}))
+
 module.exports = router;

@@ -18,12 +18,12 @@ function NBActions({ currentNb, setCurrentNbId }) {
     setErrors([]);
     const payload = { title, userId }
     dispatch(postNotebookThunk(payload))
+      .then(() => setShowModal(false))
+      .then(() => setTitle(""))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       });
-    setShowModal(false);
-    setTitle("");
   }
 
   const deleteSubmit = (e) => {

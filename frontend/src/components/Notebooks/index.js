@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState, useEffect } from 'react';
 import { getNotebooksThunk } from '../../store/notebooks';
-import { getNotesThunk, postNoteThunk, deleteNoteThunk } from '../../store/notes';
+import { getNotesThunk, postNoteThunk, deleteNoteThunk, editNoteThunk } from '../../store/notes';
 import NBActions from './NBActions';
 // import Notes from './Notes';
 import './Notebooks.css';
@@ -15,21 +15,33 @@ function Notebook() {
   const [currentNbId, setCurrentNbId] = useState(0);
   const currentNb = useSelector(state => state.notebooks[currentNbId])
   const [currentNote, setCurrentNote] = useState({});
+  const [noteTitle, setNoteTitle] = useState('Note Title');
+  const [noteContent, setNoteContent] = useState('Jot it down!');
 
   useEffect(() => {
     dispatch(getNotebooksThunk());
     dispatch(getNotesThunk());
   }, [dispatch]);
 
+  // useEffect(() => {
+  //   if (notebooksArr.length > 0) {
+  //     setCurrentNbId(notebooksArr[0].id);
+  //   }
+  // }, [notebooks])
+
   useEffect(() => {
-    if (notebooksArr.length > 0) {
-      setCurrentNbId(notebooksArr[0].id);
-    }
-  }, [notebooks])
+      setCurrentNbId(notebooksArr[0]?.id);
+  }, [])
+
+  // useEffect(() => {
+  //   if (currentNb && currentNb.Notes && currentNb.Notes.length > 0) {
+  //     setCurrentNote(currentNb.Notes[0]);
+  //   }
+  // }, [currentNb])
 
   useEffect(() => {
     if (currentNb && currentNb.Notes && currentNb.Notes.length > 0) {
-      setCurrentNote(currentNb.Notes[0]);
+      if ((currentNote) && (currentNote.notebookId !== currentNb.id)) setCurrentNote(currentNb.Notes[0]);
     }
   }, [currentNb])
 
@@ -40,13 +52,32 @@ function Notebook() {
       notebookId: currentNbId,
       userId: sessionUser.id
     }
-    dispatch(postNoteThunk(payload));
+    dispatch(postNoteThunk(payload))
+      // .then(() => dispatch(getNotebooksThunk(currentNb.userId)))
+      .then(() => dispatch(getNotebooksThunk()))
+      .then(() => {
+        console.log("TRYING TO SET CURRENT NOTE", currentNb?.Notes[currentNb?.Notes.length])
+        setCurrentNote(currentNb?.Notes[currentNb?.Notes.length])
+      })
+      //the above is not working!!!
   }
 
   const deleteNote = () => {
     dispatch(deleteNoteThunk(currentNote.id))
       .then(() => dispatch(getNotebooksThunk(currentNb.userId)))
     setCurrentNote(currentNb.Notes[0]);
+  }
+
+  const editNote = () => {
+    const editedNote = {
+      title: noteTitle,
+      content: noteContent,
+      userId: sessionUser.id,
+      noteId: currentNote.id
+     }
+    dispatch(editNoteThunk(editedNote))
+      .then(() => dispatch(getNotebooksThunk(currentNb.userId)))
+      // .then(() => setCurrentNote(currentNote))
   }
 
   return (
@@ -101,11 +132,18 @@ function Notebook() {
             <h3>{ currentNote?.title ? currentNote.title : 'Choose a Note'}</h3>
           </div>
           <div id="note-buttons-div">
-            <button>Save</button>
+            <button onClick={() => editNote()}>Save</button>
             <button onClick={() => deleteNote()}>Delete</button>
           </div>
           <div id="note-form-container">
-            <NoteForm currentNote={currentNote} setCurrentNote={setCurrentNote} />
+            <NoteForm
+              currentNote={currentNote}
+              setCurrentNote={setCurrentNote}
+              noteTitle={noteTitle}
+              setNoteTitle={setNoteTitle}
+              noteContent={noteContent}
+              setNoteContent={setNoteContent}
+            />
           </div>
         </div>
       </div>

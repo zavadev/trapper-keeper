@@ -1,14 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
-function NoteForm ({ currentNote, setCurrentNote }) {
-  const [noteTitle, setNoteTitle] = useState('Note Title');
-  const [noteContent, setNoteContent] =useState('Jot it down!');
+function NoteForm ({ currentNote, setCurrentNote, noteTitle, setNoteTitle, noteContent, setNoteContent }) {
+
+  // useEffect( () => {
+  //   if (currentNote.title && currentNote.content) {
+  //     setNoteTitle(currentNote.title);
+  //     setNoteContent(currentNote.content);
+  //   }
+  // }, [currentNote])
 
   useEffect( () => {
-    if (currentNote.title && currentNote.content) {
-      setNoteTitle(currentNote.title);
-      setNoteContent(currentNote.content);
-    }
+    if (currentNote?.title) setNoteTitle(currentNote.title);
+     if (currentNote?.content) setNoteContent(currentNote.content);
   }, [currentNote])
 
   return (
