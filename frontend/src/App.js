@@ -23,7 +23,6 @@ function App() {
             <SplashPage isLoaded={isLoaded} />
           </Route>
           <Route path='/users/:userId'>
-            <Navigation isLoaded={isLoaded} />
             <HomePage />
           </Route>
           <Route path="/signup">

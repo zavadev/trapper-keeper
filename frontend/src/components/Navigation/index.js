@@ -8,19 +8,12 @@ import './Navigation.css';
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
-  let sessionLinks;
-  if (sessionUser) {
-    sessionLinks = (
-      <ProfileButton user={sessionUser} />
-    );
-  } else {
-    sessionLinks = (
+  let sessionLinks = (
       <>
         <LoginFormModal />
         <NavLink to="/signup">Sign Up</NavLink>
       </>
     );
-  }
 
   return (
     <>
