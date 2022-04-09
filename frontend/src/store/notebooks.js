@@ -31,11 +31,8 @@ export const postNotebookThunk = (notebook) => async (dispatch) => {
     body: JSON.stringify(notebook),
   });
 
-  if (response.ok) {
-    const payload = await response.json();
-    dispatch(postNotebook(payload));
-    return;
-  }
+  const payload = await response.json();
+  dispatch(postNotebook(payload));
   return response;
 };
 

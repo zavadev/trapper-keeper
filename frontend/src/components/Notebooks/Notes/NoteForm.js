@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 
-function NoteForm ({ currentNote, setCurrentNote }) {
-  const [noteTitle, setNoteTitle] = useState('Note Title');
-  const [noteContent, setNoteContent] =useState('Jot it down!');
+function NoteForm ({ currentNote, setCurrentNote, noteTitle, setNoteTitle, noteContent, setNoteContent }) {
 
+  //Didn't bring back changes here:
   useEffect( () => {
     if (currentNote.title && currentNote.content) {
       setNoteTitle(currentNote.title);

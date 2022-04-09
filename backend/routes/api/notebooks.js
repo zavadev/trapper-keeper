@@ -22,8 +22,10 @@ router.get("/", requireAuth, asyncHandler(async (req, res) => {
 const validateNotebook = [
   check('title')
     .exists({ checkFalsy: true })
-    .isLength({ max: 50 })
-    .withMessage('Notebook title must be less than 50 characters!'),
+    .isLength({ max: 25 })
+    .withMessage('Notebook title must be less than 25 characters!')
+    .isLength({ min: 1 })
+    .withMessage('Notebook title must be at least 1 character.'),
   handleValidationErrors
 ];
 

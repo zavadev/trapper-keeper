@@ -57,6 +57,26 @@ export const deleteNoteThunk = (noteId) => async (dispatch) => {
   }
 }
 
+// EDIT A NOTE:
+const EDIT_NOTE = "notes/editNote";
+
+const editNote = (payload) => ({
+  type: EDIT_NOTE,
+  payload
+})
+
+export const editNoteThunk = (editedNote) => async (dispatch) => {
+  const response = await csrfFetch(`/api/notes/${editedNote.noteId}`, {
+    method: 'PUT',
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(editedNote)
+  });
+
+  const payload = await response.json();
+  dispatch(editNote(payload));
+  return response;
+}
+
 
 const initialState = {};
 
@@ -68,11 +88,19 @@ const notesReducer = (state = initialState, action) => {
       action.payload.forEach(note => newState[note.id] = note)
       return newState;
     case POST_NOTE:
-      return { ...state, [action.payload.id]: action.payload };
+      // return { ...state, [action.payload.id]: action.payload };
+      newState = {};
+      newState = { ...state };
+      newState[action.payload.id] = action.payload;
+      return newState;
     case DELETE_NOTE:
       newState = {};
       newState = { ...state };
       delete newState[action.payload];
+      return newState;
+    case EDIT_NOTE:
+      newState = { ...state };
+      newState[action.payload.id] = action.payload;
       return newState;
     default:
       return state;
