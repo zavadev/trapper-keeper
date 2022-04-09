@@ -1,17 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import * as sessionActions from "../../store/session";
+import Navigation from '../Navigation';
+import './SplashPage.css'
 
-function SplashPage() {
-    const dispatch = useDispatch();
-    const [isLoaded, setIsLoaded] = useState(false);
-    useEffect(() => {
-        dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-    }, [dispatch]);
+function SplashPage({isLoaded}) {
 
     return (
         <>
           <h1>SPLASH PAGE</h1>
+          <Navigation isLoaded={isLoaded} />
         </>
     )
 }

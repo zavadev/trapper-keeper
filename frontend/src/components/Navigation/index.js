@@ -27,7 +27,6 @@ function Navigation({ isLoaded }){
       <h1 className="site-name">TrapperKeeper</h1>
       <div className="nav-container">
         <div className="nav-div">
-          <NavLink exact to="/">Home</NavLink>
           {isLoaded && sessionLinks}
         </div>
       </div>

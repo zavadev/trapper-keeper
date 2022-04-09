@@ -31,8 +31,7 @@ function LoginForm() {
     setErrors([]);
     return dispatch(sessionActions.login({ credential, password }))
       .then((user) => history.push(`/users/${user.user.id}`))
-      .catch(
-        async (res) => {
+      .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
         }

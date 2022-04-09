@@ -6,7 +6,6 @@ import SignupFormPage from "./components/SignupFormPage";
 import SplashPage from "./components/SplashPage";
 import HomePage from "./components/HomePage";
 import Navigation from "./components/Navigation";
-import LoginFormModal from "./components/LoginFormModal";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,12 +20,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path='/'>
-            <Navigation isLoaded={isLoaded} />
-            <SplashPage />
-          <Route path="/login">
-            <Navigation isLoaded={isLoaded} />
-            <LoginFormModal />
-          </Route>
+            <SplashPage isLoaded={isLoaded} />
           </Route>
           <Route path='/users/:userId'>
             <Navigation isLoaded={isLoaded} />
