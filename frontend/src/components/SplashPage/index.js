@@ -1,17 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import * as sessionActions from "../../store/session";
+import Navigation from '../Navigation';
+import './SplashPage.css'
 
-function SplashPage() {
-    const dispatch = useDispatch();
-    const [isLoaded, setIsLoaded] = useState(false);
-    useEffect(() => {
-        dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-    }, [dispatch]);
+function SplashPage({isLoaded}) {
 
     return (
         <>
-          <h1>SPLASH PAGE</h1>
+          <div id="splash-container">
+            <div className="splash-main-div">
+              <div id="titles-main-div" className="titles-main">
+                <div id="title">TrapperKeeper</div>
+                <div id="slogan">Your Notes. For Keeps.</div>
+              </div>
+              <div id="nav-main-div">
+                <Navigation isLoaded={isLoaded} />
+              </div>
+            </div>
+          </div>
         </>
     )
 }
