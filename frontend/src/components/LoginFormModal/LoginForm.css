@@ -1,0 +1,110 @@
+@font-face {
+  font-family: 'TrapperKeeper';
+  src: url("../../../public/fonts/trapper-keeper.ttf");
+}
+
+#login-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 440px;
+  width: 275px;
+  font-family: "Raleway", sans-serif;
+  background-color: mediumpurple;
+  font-size: 20px;
+  margin: none;
+  padding: none;
+}
+#email-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+#input-box-email {
+  margin: 8px;
+  padding: 4px;
+  font-size: 20px;
+  width: 150px;
+  border-radius: 5px;
+}
+#password-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+#input-box-pass {
+  margin: 8px;
+  padding: 4px;
+  font-size: 20px;
+  width: 150px;
+  border-radius: 5px;
+}
+
+#login-title {
+  font-size: 38px;
+  color: hotpink;
+  border-bottom: 2px solid white;
+  padding: 8px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  margin-top: none;
+  align-self: center;
+  font-family: 'TrapperKeeper', 'Courier New', Courier, monospace;
+}
+
+#buttons-div {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  margin-bottom: 30px;
+}
+
+#submit-btn {
+  margin-bottom: 20px;
+  height: 50px;
+  width: 140px;
+  font-size: 18px;
+  background-color: mediumpurple;
+  border: 3px solid blueviolet;
+  transition-duration: 0.4s;
+}
+#submit-btn:hover {
+  background-color: blueviolet;
+  cursor: pointer;
+}
+
+#demo-btn {
+  height: 50px;
+  font-size: 18px;
+  background-color: mediumpurple;
+  border: 3px solid blueviolet;
+  transition-duration: 0.4s;
+}
+#demo-btn:hover {
+  background-color: blueviolet;
+  cursor: pointer;
+}
+
+#login-btn {
+  height: 50px;
+  width: 175px;
+  font-size: 22px;
+  font-weight: bold;
+  color: blueviolet;
+  font-family: "Raleway", sans-serif;
+  background-color: white;
+  border: 3px solid blueviolet;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+}
+#login-btn:hover {
+  background-color: rgb(180, 160, 218);
+  color: blueviolet;
+  cursor: pointer;
+}

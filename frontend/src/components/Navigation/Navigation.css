@@ -9,10 +9,9 @@
 .nav-div {
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
-    width: 260px;
+    width: 400px;
     height: 75px;
     padding: 5px;
-    border: 5px solid teal;
 }

@@ -1,0 +1,81 @@
+@font-face {
+  font-family: 'TrapperKeeper';
+  src: url("../../../public/fonts/trapper-keeper.ttf");
+}
+
+#signup-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 575px;
+  width: 275px;
+  font-family: "Raleway", sans-serif;
+  background-color: rgb(255, 121, 188);
+  font-size: 20px;
+  margin: none;
+  padding: none;
+}
+
+#signup-title {
+  font-size: 38px;
+  color: blueviolet;
+  border-bottom: 2px solid white;
+  padding: 8px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  margin-top: none;
+  align-self: center;
+  font-family: 'TrapperKeeper', 'Courier New', Courier, monospace;
+}
+
+.all-labels {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.all-inputs {
+  margin: 8px;
+  padding: 4px;
+  font-size: 20px;
+  width: 150px;
+  border-radius: 5px;
+}
+
+#sign-btn {
+  margin-bottom: 20px;
+  margin-top: 10px;
+  height: 50px;
+  width: 140px;
+  font-size: 18px;
+  background-color: rgb(255, 121, 188);
+  border: 3px solid deeppink;
+  transition-duration: 0.4s;
+}
+#sign-btn:hover {
+  background-color: deeppink;
+  cursor: pointer;
+}
+
+
+/* ON MAIN SPLASH: */
+#signup-btn {
+  height: 50px;
+  width: 175px;
+  font-size: 22px;
+  font-weight: bold;
+  color: hotpink;
+  font-family: "Raleway", sans-serif;
+  background-color: white;
+  border: 3px solid hotpink;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+}
+#signup-btn:hover {
+  background-color: rgb(176, 42, 106);
+  color: hotpink;
+  cursor: pointer;
+}
