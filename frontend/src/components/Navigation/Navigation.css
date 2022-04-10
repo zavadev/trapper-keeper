@@ -1,28 +1,18 @@
-@font-face {
-    font-family: 'TrapperKeeper';
-    src: url("../../../public/fonts/trapper-keeper.ttf");
-}
-
 #profile-icon {
     font-size: 50px;
 }
-.site-name {
-    font-family: 'TrapperKeeper', 'Courier New', Courier, monospace;
-    color: hotpink;
-}
+
 .nav-container {
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
-    border-width: 100%;
 }
 .nav-div {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-end;
     justify-content: space-between;
-    width: fit-content;
-    height: 125px;
+    width: 260px;
+    height: 75px;
     padding: 5px;
     border: 5px solid teal;
 }

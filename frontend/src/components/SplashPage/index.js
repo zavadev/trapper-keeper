@@ -6,12 +6,14 @@ function SplashPage({isLoaded}) {
     return (
         <>
           <div id="splash-container">
-            <div id="splash-main-div">
-              <div id="titles-main-div">
+            <div className="splash-main-div">
+              <div id="titles-main-div" className="titles-main">
                 <div id="title">TrapperKeeper</div>
-                <div id="slogan">Remember It.</div>
+                <div id="slogan">Your Notes. For Keeps.</div>
               </div>
-              <Navigation isLoaded={isLoaded} />
+              <div id="nav-main-div">
+                <Navigation isLoaded={isLoaded} />
+              </div>
             </div>
           </div>
         </>

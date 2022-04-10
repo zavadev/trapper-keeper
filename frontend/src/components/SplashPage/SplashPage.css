@@ -11,14 +11,53 @@ body, html {
 }
 
 #splash-container {
-  background: darkturquoise;
+  background-image: url('../../../assets/4.jpg');
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.splash-main-div {
+  background: rgba(0, 206, 209, .75);
+  height: 350px;
+  width: 650px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#titles-main-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#slogan {
+  font-size: 25px;
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  margin: none;
+  padding: none;
+}
+
+#nav-main-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 #title {
   font-family: 'TrapperKeeper', 'Courier New', Courier, monospace;
   color: hotpink;
+  font-size: 7rem;
+  margin: none;
+  padding: none;
 }
+
 /* #splash-container {
   height: 100vh;
   width: 100vh;
