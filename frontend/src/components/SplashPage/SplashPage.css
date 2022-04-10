@@ -1,3 +1,26 @@
-/* body {
+body, html {
+  height: 100vh;
+  width: 100vw;
+  margin: 0px;
+  padding: 0px;
+}
+
+@font-face {
+  font-family: 'TrapperKeeper';
+  src: url("../../../public/fonts/trapper-keeper.ttf");
+}
+
+#splash-container {
+  background: darkturquoise;
+  height: 100vh;
+}
+
+#title {
+  font-family: 'TrapperKeeper', 'Courier New', Courier, monospace;
+  color: hotpink;
+}
+/* #splash-container {
+  height: 100vh;
+  width: 100vh;
   background-color: green;
 } */
