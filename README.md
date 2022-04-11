@@ -1,6 +1,6 @@
 <h1 align="center"> TrapperKeeper </h1>
 
-<h5 align="center">  By:  <a href="https://github.com/zavadev">Nathan Zavala</a> - <a href="https://trapper-keeper.herokuapp.com/"><i>Live site</i></h5>
+<h5 align="center">  By:  <a href="https://github.com/zavadev">Nathan Zavala</a> - <a href="https://trapperkeeper-notes.herokuapp.com/"><i>Live site</i></h5>
 
 #### Key Features
 - Notebooks: user can create, read, and delete any of their notebooks
