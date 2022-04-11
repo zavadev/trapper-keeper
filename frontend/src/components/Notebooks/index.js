@@ -19,6 +19,16 @@ function Notebook() {
   const [noteContent, setNoteContent] = useState('Jot it down!');
   const [errors, setErrors] = useState([]);
 
+
+  console.log('======>>>>>>>', notebooksArr)
+  // const dispatch = useDispatch();
+  // const sessionUser = useSelector(state => state.session.user);
+  // let notebooks = useSelector(state => state.notebooks);
+  // let notebooksArr = Object.values(notebooks).reverse();
+  // console.log('=====>>>>>>>', )
+  // notebooksArr = notebooks.filter(notebook => notebook.userId == sessionUser.id);
+  // const [currentNbId, setCurrentNbId] = useState(0);
+
   useEffect(() => {
     dispatch(getNotebooksThunk());
     dispatch(getNotesThunk());
@@ -76,7 +86,7 @@ function Notebook() {
           <h2 className="my-notebooks">Notebooks</h2>
         </div>
         <div id="notebook-list">
-          {notebooksArr?.map((notebook) => (
+          {notebooksArr?.filter(notebook => notebook.userId === +sessionUser.id).map((notebook) => (
             <div
               id={notebook.id}
               key={notebook.id}

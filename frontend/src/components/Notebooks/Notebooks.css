@@ -53,6 +53,7 @@
   width: 200px;
   height: 300px;
   font-size: 20px;
+  overflow-y: scroll;
 }
 #notebook-list:hover {
   cursor: pointer;
@@ -63,6 +64,7 @@
   width: 200px;
   height: 300px;
   font-size: 20px;
+  overflow-y: scroll;
 }
 #note-list:hover {
   cursor: pointer;
