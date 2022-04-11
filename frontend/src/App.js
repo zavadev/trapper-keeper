@@ -23,6 +23,9 @@ function App() {
           <Route path='/users/:userId'>
             <HomePage />
           </Route>
+          <Route>
+            404 Error
+          </Route>
         </Switch>
       )}
     </>
