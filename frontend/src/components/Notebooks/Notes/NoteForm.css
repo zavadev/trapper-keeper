@@ -1,0 +1,23 @@
+#main-note-title {
+  font-family: "Raleway", sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  font-style: italic;
+  width: 596px;
+  padding: none;
+  /* background-color: rgb(180, 160, 218); */
+  background-color: mediumpurple;
+  color: white;
+  border: none;
+}
+textarea:focus, input:focus{
+  outline: none;
+}
+
+#note-content {
+  font-family: "Raleway", sans-serif;
+  font-size: 24px;
+  width: 594px;
+  height: 257px;
+  background-color: rgba(255, 255, 255, .85);
+}

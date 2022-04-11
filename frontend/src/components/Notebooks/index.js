@@ -17,6 +17,7 @@ function Notebook() {
   const [currentNote, setCurrentNote] = useState({});
   const [noteTitle, setNoteTitle] = useState('Note Title');
   const [noteContent, setNoteContent] = useState('Jot it down!');
+  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     dispatch(getNotebooksThunk());
@@ -53,6 +54,7 @@ function Notebook() {
   }
 
   const editNote = () => {
+    setErrors([]);
     const editedNote = {
       title: noteTitle,
       content: noteContent,
@@ -61,73 +63,80 @@ function Notebook() {
      }
     dispatch(editNoteThunk(editedNote))
       .then(() => dispatch(getNotebooksThunk()))
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      });
   }
 
   return (
     <>
-      <div id="home-container">
-        <div id="my-notebooks-div">
-          <div>
-            <h2 className="my-notebooks">My Notebooks</h2>
-          </div>
-          <div id="notebook-list">
-            {notebooksArr?.map((notebook) => (
-              <div
-                id={notebook.id}
-                key={notebook.id}
-                className={currentNb?.id === notebook.id ? 'current-notebook' : 'not-current-notebook'}
-                onClick={() => {
-                  setCurrentNbId(notebook.id)
-                }}
-              >
-                {notebook.title}
-              </div>
-            ))}
-          </div>
-          <div id="nb-buttons-div">
-            <NBActions currentNb={currentNb} setCurrentNbId={setCurrentNbId}/>
-          </div>
+      <div id="my-notebooks-div">
+        <div className="main-titles">
+          <h2 className="my-notebooks">Notebooks</h2>
         </div>
-        <div id="my-notes-div">
-          <div>
-            <h2>Notes</h2>
-          </div>
-          <div id="note-list">
-            {currentNb?.Notes?.map((note) => (
-              <div
-                id={note.id}
-                key={note.id}
-                className={currentNote?.id === note.id ? 'current-note' : 'not-current-note'}
-                onClick={() => {
-                  setCurrentNote(note)
-                }}
-              >
-                {note.title}
-              </div>
-            ))}
-          </div>
-          <div>
-            <button onClick={() => newNote()}>New Note</button>
-          </div>
+        <div id="notebook-list">
+          {notebooksArr?.map((notebook) => (
+            <div
+              id={notebook.id}
+              key={notebook.id}
+              className={currentNb?.id === notebook.id ? 'current-notebook' : 'not-current-notebook'}
+              onClick={() => {
+                setCurrentNbId(notebook.id)
+              }}
+            >
+              {notebook.title}
+            </div>
+          ))}
         </div>
-        <div id="main-note-container">
-          <div id="note-title-div">
-            <h3>{ currentNote?.title ? currentNote.title : 'Choose a Note'}</h3>
-          </div>
-          <div id="note-buttons-div">
-            <button onClick={() => editNote()}>Save</button>
-            <button onClick={() => deleteNote()}>Delete</button>
-          </div>
-          <div id="note-form-container">
-            <NoteForm
-                currentNote={currentNote}
-                setCurrentNote={setCurrentNote}
-                noteTitle={noteTitle}
-                setNoteTitle={setNoteTitle}
-                noteContent={noteContent}
-                setNoteContent={setNoteContent}
-              />
-          </div>
+        <div id="nb-buttons-div">
+          <NBActions currentNb={currentNb} setCurrentNbId={setCurrentNbId}/>
+        </div>
+      </div>
+      <div id="my-notes-div">
+        <div className="main-titles">
+          <h2>Notes</h2>
+        </div>
+        <div id="note-list">
+          {currentNb?.Notes?.map((note) => (
+            <div
+              id={note.id}
+              key={note.id}
+              className={currentNote?.id === note.id ? 'current-note' : 'not-current-note'}
+              onClick={() => {
+                setCurrentNote(note)
+              }}
+            >
+              {note.title}
+            </div>
+          ))}
+        </div>
+        <div>
+          <button id="new-note-btn" onClick={() => newNote()}>New Note</button>
+        </div>
+      </div>
+      <div id="main-note-container">
+        <div id="note-title-div">
+          {/* <h3>{ currentNote?.title ? currentNote.title : 'Choose a Note'}</h3> */}
+        </div>
+        <ul id="save-errors">
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
+        <div id="note-buttons-div">
+          <button id="save-note-btn" onClick={() => editNote()}>Save</button>
+          <button id="delete-note-btn" onClick={() => deleteNote()}>Delete</button>
+        </div>
+        <div id="note-form-container">
+          <NoteForm
+              currentNote={currentNote}
+              setCurrentNote={setCurrentNote}
+              noteTitle={noteTitle}
+              setNoteTitle={setNoteTitle}
+              noteContent={noteContent}
+              setNoteContent={setNoteContent}
+            />
         </div>
       </div>
     </>

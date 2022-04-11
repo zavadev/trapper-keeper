@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import './NoteForm.css';
 
 function NoteForm ({ currentNote, setCurrentNote, noteTitle, setNoteTitle, noteContent, setNoteContent }) {
 
@@ -12,23 +13,19 @@ function NoteForm ({ currentNote, setCurrentNote, noteTitle, setNoteTitle, noteC
 
   return (
     <form id="form-note-content">
-      <div id="form-title-div">
         <input
-          id="main-note-form"
+          id="main-note-title"
           type="text"
           onChange={e => setNoteTitle(e.target.value)}
           value={noteTitle}
           required
         />
-      </div>
-      <div id="form-content-div">
         <textarea
-          id="form-note-content"
+          id="note-content"
           onChange={e => setNoteContent(e.target.value)}
           value={noteContent}
           required
         />
-      </div>
     </form>
   );
 }

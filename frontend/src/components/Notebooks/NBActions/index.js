@@ -35,7 +35,7 @@ function NBActions({ currentNb, setCurrentNbId }) {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>New Notebook</button>
+      <button id="new-notebook-btn" className="notebook-actions" onClick={() => setShowModal(true)}>New Notebook</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <CreateNBForm
@@ -46,10 +46,10 @@ function NBActions({ currentNb, setCurrentNbId }) {
           />
         </Modal>
       )}
-      <button onClick={() => setShowDeleteModal(true)}>Delete</button>
+      <button id="notebook-delete" className="notebook-actions" onClick={() => setShowDeleteModal(true)}>Delete</button>
       {showDeleteModal && (
         <Modal onClose={() => setShowDeleteModal(false)}>
-          <h3>Are you sure you want to delete {currentNb.title}?</h3>
+          <div>Are you sure you want to delete {currentNb.title}?</div>
           <button onClick={() => deleteSubmit()}>Delete!</button>
         </Modal>
       )}

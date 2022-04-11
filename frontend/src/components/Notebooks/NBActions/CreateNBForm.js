@@ -1,3 +1,4 @@
+import "./NBActions.css";
 
 function CreateNBForm({
   newNotebookSubmit,
@@ -7,23 +8,24 @@ function CreateNBForm({
 }) {
 
   return (
-    <form onSubmit={newNotebookSubmit}>
+    <form id="new-notebook-form" onSubmit={newNotebookSubmit}>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
-      <h3>New Notebook</h3>
-      <label>
-        Give It a Name!
+      <div id="new-modal-title">New Notebook</div>
+      <label id="new-notebook-input">
+        Give it a name!
         <input
+          id="new-notebook-box"
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
         />
       </label>
-      <button type="submit">Create</button>
+      <button id="new-ntbk-sbmt" type="submit">Create</button>
     </form>
   );
 }
