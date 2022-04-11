@@ -58,9 +58,11 @@ function Notebook() {
   }
 
   const deleteNote = () => {
-    dispatch(deleteNoteThunk(currentNote.id))
-      .then(() => dispatch(getNotebooksThunk(currentNb.userId)))
-    setCurrentNote(currentNb.Notes[0]);
+    if (currentNote) {
+      dispatch(deleteNoteThunk(currentNote.id))
+        .then(() => dispatch(getNotebooksThunk(currentNb.userId)))
+      setCurrentNote(currentNb.Notes[0]);
+    }
   }
 
   const editNote = () => {
@@ -100,7 +102,7 @@ function Notebook() {
           ))}
         </div>
         <div id="nb-buttons-div">
-          <NBActions currentNb={currentNb} setCurrentNbId={setCurrentNbId}/>
+          <NBActions currentNb={currentNb} currentNbId={currentNbId} setCurrentNbId={setCurrentNbId}/>
         </div>
       </div>
       <div id="my-notes-div">

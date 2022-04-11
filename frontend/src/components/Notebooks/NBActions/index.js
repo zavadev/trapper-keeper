@@ -5,7 +5,7 @@ import { postNotebookThunk, deleteNotebookThunk, getNotebooksThunk } from "../..
 import CreateNBForm from './CreateNBForm';
 import './NBActions.css';
 
-function NBActions({ currentNb, setCurrentNbId }) {
+function NBActions({ currentNb, currentNbId, setCurrentNbId }) {
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const dispatch = useDispatch();
@@ -27,10 +27,14 @@ function NBActions({ currentNb, setCurrentNbId }) {
   }
 
   const deleteSubmit = (e) => {
-    dispatch(deleteNotebookThunk(currentNb.id))
-      .then(() => dispatch(getNotebooksThunk(currentNb.userId)))
-    setShowDeleteModal(false);
-    setCurrentNbId(0);
+    if (!currentNbId) {
+      return
+    } else {
+      dispatch(deleteNotebookThunk(currentNb.id))
+        .then(() => dispatch(getNotebooksThunk(currentNb.userId)))
+      setShowDeleteModal(false);
+      setCurrentNbId(0);
+    }
   }
 
   return (
@@ -50,7 +54,7 @@ function NBActions({ currentNb, setCurrentNbId }) {
       {showDeleteModal && (
         <Modal onClose={() => setShowDeleteModal(false)}>
           <div id="delete-modal-div">
-            <div>Are you sure you want to delete {currentNb.title}?</div>
+            <div>Are you sure you want to delete {currentNb?.title}?</div>
             <button id="confirm-delete-button" onClick={() => deleteSubmit()}>Delete!</button>
           </div>
         </Modal>
