@@ -10,8 +10,8 @@
 - ![alt text](https://github.com/abranhe/programming-languages-logos/blob/master/src/javascript/javascript_24x24.png) JavaScript
 - ![alt text](https://github.com/abranhe/programming-languages-logos/blob/master/src/html/html_24x24.png) HTML
 - ![alt text](https://github.com/abranhe/programming-languages-logos/blob/master/src/css/css_24x24.png) CSS
-- Postgres
-- Node.Js
+- ![alt text](https://github.com/Workshape/tech-icons/blob/master/icons/postgres.svg) Postgres
+- ![alt text](https://github.com/Workshape/tech-icons/blob/master/icons/nodejs.svg) Node.Js
 
 ![alt text](https://github.com/Workshape/tech-icons/blob/master/icons/expressjs.svg)
    ![alt text](https://github.com/Workshape/tech-icons/blob/master/icons/git.svg)
