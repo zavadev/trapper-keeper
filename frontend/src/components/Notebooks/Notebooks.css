@@ -80,6 +80,7 @@
 }
 .not-current-notebook:hover {
   background-color: rgb(234, 168, 239);
+  cursor: pointer;
 }
 
 .current-note {
@@ -93,11 +94,15 @@
 }
 .not-current-note:hover {
   background-color: rgb(115, 175, 244);
+  cursor: pointer;
 }
 
 #save-errors {
   position: absolute;
-  top: 160px;
+  top: 1%;
+  right: 2%;
+  color: red;
+  background-color: white;
 }
 
 #new-note-btn {
@@ -111,6 +116,7 @@
 #new-note-btn:hover {
   color: white;
   background-color: rgb(8, 105, 215);
+  cursor: pointer;
 }
 
 #note-buttons-div {
@@ -128,6 +134,7 @@
 #save-note-btn:hover {
   background-color: rgb(95, 231, 58);
   color: white;
+  cursor: pointer;
 }
 
 #delete-note-btn {
@@ -141,4 +148,5 @@
   background-color: red;
   border: 2px solid mediumpurple;
   color: white;
+  cursor: pointer;
 }

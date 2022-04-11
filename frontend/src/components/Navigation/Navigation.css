@@ -1,5 +1,12 @@
-#profile-icon {
-    font-size: 50px;
+#profile-image-btn {
+    background-image: url('../../../assets/user.png');
+    background-size: 70px 70px;
+    height: 70px;
+    width: 70px;
+    border: none;
+}
+#profile-image-btn:hover {
+  cursor: pointer;
 }
 
 .nav-container {
@@ -14,4 +21,30 @@
     width: 400px;
     height: 75px;
     padding: 5px;
+}
+
+.profile-dropdown {
+  font-family: "Raleway", sans-serif;
+  font-size: 18px;
+  list-style-type: none;
+  background-color: white;
+  margin-left: 10px;
+  padding: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+#drop-logout-btn {
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  background-color: white;
+  border: 2px solid hotpink;
+  border-radius: 5px;
+  margin-top: 6px;
+}
+#drop-logout-btn:hover {
+  background-color: hotpink;
+  color: white;
+  cursor: pointer;
 }
