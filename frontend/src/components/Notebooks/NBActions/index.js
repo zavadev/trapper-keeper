@@ -49,8 +49,10 @@ function NBActions({ currentNb, setCurrentNbId }) {
       <button id="notebook-delete" className="notebook-actions" onClick={() => setShowDeleteModal(true)}>Delete</button>
       {showDeleteModal && (
         <Modal onClose={() => setShowDeleteModal(false)}>
-          <div>Are you sure you want to delete {currentNb.title}?</div>
-          <button onClick={() => deleteSubmit()}>Delete!</button>
+          <div id="delete-modal-div">
+            <div>Are you sure you want to delete {currentNb.title}?</div>
+            <button id="confirm-delete-button" onClick={() => deleteSubmit()}>Delete!</button>
+          </div>
         </Modal>
       )}
     </>
