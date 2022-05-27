@@ -4,7 +4,7 @@
 
 Welcome to Trapper Keeper, an 80s themed note-taking app inspired by the binder of the same name that you remember from your childhood!
 
-<img src="https://res.cloudinary.com/doulyb7dt/image/upload/v1653689514/Project%20Screenshots/tk2_g15xxi.png" alt="site-splash" width="600" height="400"/>
+<img align="center" src="https://res.cloudinary.com/doulyb7dt/image/upload/v1653689514/Project%20Screenshots/tk2_g15xxi.png" alt="site-splash" width="625" height="400"/>
 
 
 ## Technology
