@@ -1,8 +1,11 @@
 <h1 align="center"> Trapper Keeper </h1>
 
-<h5 align="center">  By:  <a href="https://github.com/zavadev">Nathan Zavala</a> - <a href="https://trapperkeeper-notes.herokuapp.com/"><i>Live site</i></h5>
+<h5 align="center">  By:  <a href="https://github.com/zavadev">Nathan Zavala</a> - <a href="https://trapperkeeper-notes.herokuapp.com/"><i>Live site</a></i></h5>
 
 Welcome to Trapper Keeper, an 80s themed note-taking app inspired by the binder of the same name that you remember from your childhood!
+
+<img src="https://res.cloudinary.com/doulyb7dt/image/upload/v1653689514/Project%20Screenshots/tk2_g15xxi.png" alt="site-splash" width="350" height="100"/>
+
 
 ## Technology
 
