@@ -21,7 +21,7 @@ Welcome to Trapper Keeper, an 80s themed note-taking app inspired by the binder 
 ### Notes
   - Create a new Note, assigning it to a specific Notebook
   - Read all Notes from a selected Notebook
-  - Edit contents of Notes
+  - Edit contents of Note
   - Delete a Note from a Notebook
 
 ### User Authentication
