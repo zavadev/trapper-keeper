@@ -25,7 +25,6 @@ function Notebook() {
   // const sessionUser = useSelector(state => state.session.user);
   // let notebooks = useSelector(state => state.notebooks);
   // let notebooksArr = Object.values(notebooks).reverse();
-  // console.log('=====>>>>>>>', )
   // notebooksArr = notebooks.filter(notebook => notebook.userId == sessionUser.id);
   // const [currentNbId, setCurrentNbId] = useState(0);
 
